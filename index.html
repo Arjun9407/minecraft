@@ -1,0 +1,3084 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Minecraft World - Seeds, Commands, Tips & Tricks 2026</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <style>
+      :root {
+        --grass-green: #5d8c3e;
+        --grass-light: #7cbd6b;
+        --dirt-brown: #8b6914;
+        --dirt-dark: #6b4e0a;
+        --stone-gray: #7f7f7f;
+        --stone-dark: #4a4a4a;
+        --sky-top: #1a3a5c;
+        --sky-mid: #3a7abf;
+        --sky-bottom: #78a7ff;
+        --wood-dark: #3e2723;
+        --wood-light: #5d4037;
+        --accent: #4ade80;
+        --gold: #ffd700;
+        --diamond: #4aedd9;
+        --redstone: #ff4444;
+        --text: #f0f0f0;
+        --card-bg: rgba(12, 18, 24, 0.85);
+        --card-border: #1e2a36;
+        --section-bg: #0b1018;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Space Grotesk", sans-serif;
+        background: var(--section-bg);
+        color: var(--text);
+        overflow-x: hidden;
+      }
+
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 100;
+        padding: 12px 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(10, 20, 30, 0.6);
+        backdrop-filter: blur(12px);
+        border-bottom: 3px solid var(--grass-green);
+        transition: all 0.4s;
+      }
+      .navbar.scrolled {
+        background: rgba(10, 20, 30, 0.95);
+        padding: 8px 24px;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+      .logo-icon {
+        width: 32px;
+        height: 32px;
+        position: relative;
+        image-rendering: pixelated;
+        flex-shrink: 0;
+      }
+      .logo-icon .gt {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 32px;
+        height: 9px;
+        background: var(--grass-green);
+      }
+      .logo-icon .db {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 32px;
+        height: 23px;
+        background: var(--dirt-brown);
+      }
+      .logo-icon .dp {
+        position: absolute;
+        width: 6px;
+        height: 6px;
+        background: var(--dirt-dark);
+      }
+      .logo-text {
+        font-family: "Press Start 2P", monospace;
+        font-size: 12px;
+        color: var(--grass-light);
+        text-shadow: 2px 2px 0 var(--dirt-dark);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2px;
+        list-style: none;
+        align-items: center;
+      }
+      .nav-links a {
+        font-family: "Press Start 2P", monospace;
+        font-size: 8px;
+        color: var(--text);
+        text-decoration: none;
+        padding: 8px 10px;
+        position: relative;
+        transition: color 0.3s;
+        white-space: nowrap;
+      }
+      .nav-links a::after {
+        content: "";
+        position: absolute;
+        bottom: 3px;
+        left: 10px;
+        right: 10px;
+        height: 2px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transition: transform 0.3s;
+        transform-origin: left;
+      }
+      .nav-links a:hover {
+        color: var(--accent);
+      }
+      .nav-links a:hover::after {
+        transform: scaleX(1);
+      }
+      .nav-cta {
+        font-family: "Press Start 2P", monospace !important;
+        font-size: 8px !important;
+        background: var(--grass-green) !important;
+        color: #fff !important;
+        padding: 8px 14px !important;
+        border: none;
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--grass-light) !important;
+        transform: translateY(-2px);
+        box-shadow: 0 3px 0 var(--dirt-dark);
+      }
+      .nav-cta:active {
+        transform: translateY(0);
+        box-shadow: none;
+      }
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: 2px solid var(--grass-green);
+        color: var(--grass-light);
+        font-size: 16px;
+        cursor: pointer;
+        padding: 5px 8px;
+      }
+      @media (max-width: 1000px) {
+        .nav-links {
+          display: none;
+        }
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          position: absolute;
+          top: 100%;
+          left: 0;
+          width: 100%;
+          background: rgba(10, 20, 30, 0.97);
+          padding: 12px;
+          border-bottom: 3px solid var(--grass-green);
+        }
+        .mobile-menu-btn {
+          display: block;
+        }
+      }
+
+      .hero {
+        position: relative;
+        width: 100%;
+        min-height: 100vh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .sky {
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          180deg,
+          var(--sky-top) 0%,
+          #1e5080 25%,
+          var(--sky-mid) 50%,
+          var(--sky-bottom) 75%,
+          #a8d0ff 100%
+        );
+        z-index: 0;
+      }
+      .stars {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+      .star {
+        position: absolute;
+        width: 3px;
+        height: 3px;
+        background: #fff;
+        animation: twinkle 3s ease-in-out infinite alternate;
+      }
+      @keyframes twinkle {
+        0% {
+          opacity: 0.2;
+        }
+        50% {
+          opacity: 1;
+        }
+        100% {
+          opacity: 0.3;
+        }
+      }
+      .sun {
+        position: absolute;
+        top: 12%;
+        right: 18%;
+        width: 64px;
+        height: 64px;
+        background: #ffd93d;
+        z-index: 2;
+        box-shadow: 0 0 60px 20px rgba(255, 217, 61, 0.3);
+        animation: sunP 4s ease-in-out infinite;
+      }
+      @keyframes sunP {
+        0%,
+        100% {
+          box-shadow: 0 0 60px 20px rgba(255, 217, 61, 0.3);
+        }
+        50% {
+          box-shadow: 0 0 80px 30px rgba(255, 217, 61, 0.4);
+        }
+      }
+      .clouds-c {
+        position: absolute;
+        top: 8%;
+        width: 100%;
+        height: 160px;
+        z-index: 3;
+        pointer-events: none;
+      }
+      .cloud {
+        position: absolute;
+        background: rgba(255, 255, 255, 0.85);
+      }
+      .cloud::before,
+      .cloud::after {
+        content: "";
+        position: absolute;
+        background: inherit;
+      }
+      .c1 {
+        width: 96px;
+        height: 32px;
+        top: 40px;
+        left: -120px;
+        animation: cld 35s linear infinite;
+      }
+      .c1::before {
+        width: 48px;
+        height: 32px;
+        top: -24px;
+        left: 16px;
+      }
+      .c1::after {
+        width: 64px;
+        height: 24px;
+        top: -16px;
+        left: 40px;
+      }
+      .c2 {
+        width: 128px;
+        height: 32px;
+        top: 80px;
+        left: -180px;
+        animation: cld 45s linear infinite 10s;
+        opacity: 0.7;
+      }
+      .c2::before {
+        width: 64px;
+        height: 40px;
+        top: -32px;
+        left: 24px;
+      }
+      .c2::after {
+        width: 80px;
+        height: 32px;
+        top: -24px;
+        left: 56px;
+      }
+      .c3 {
+        width: 80px;
+        height: 24px;
+        top: 20px;
+        left: -100px;
+        animation: cld 50s linear infinite 20s;
+        opacity: 0.6;
+      }
+      .c3::before {
+        width: 40px;
+        height: 24px;
+        top: -16px;
+        left: 8px;
+      }
+      .c3::after {
+        width: 48px;
+        height: 20px;
+        top: -12px;
+        left: 32px;
+      }
+      @keyframes cld {
+        0% {
+          transform: translateX(0);
+        }
+        100% {
+          transform: translateX(calc(100vw + 300px));
+        }
+      }
+      .terrain {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 45%;
+        z-index: 4;
+      }
+      .terrain-svg {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .particles {
+        position: absolute;
+        inset: 0;
+        z-index: 5;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .particle-block {
+        position: absolute;
+        image-rendering: pixelated;
+        animation: fUp linear infinite;
+        opacity: 0;
+      }
+      @keyframes fUp {
+        0% {
+          transform: translateY(100vh) rotate(0);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.7;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-100px) rotate(360deg);
+          opacity: 0;
+        }
+      }
+      .scanlines {
+        position: absolute;
+        inset: 0;
+        z-index: 6;
+        pointer-events: none;
+        background: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.03) 2px,
+          rgba(0, 0, 0, 0.03) 4px
+        );
+      }
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 110px 20px 70px;
+      }
+      .pixel-frame {
+        position: relative;
+        padding: 36px 40px;
+        background: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(8px);
+        border: 4px solid var(--grass-green);
+        animation: frmA 1s ease-out forwards;
+        opacity: 0;
+        max-width: 680px;
+      }
+      .pixel-frame::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: -8px;
+        right: -8px;
+        bottom: -8px;
+        border: 4px solid var(--dirt-dark);
+        z-index: -1;
+      }
+      .pixel-frame::after {
+        content: "";
+        position: absolute;
+        top: 4px;
+        left: 4px;
+        right: 4px;
+        bottom: 4px;
+        border: 2px solid rgba(125, 189, 107, 0.3);
+        pointer-events: none;
+      }
+      .corner {
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        background: var(--accent);
+      }
+      .corner-tl {
+        top: -12px;
+        left: -12px;
+      }
+      .corner-tr {
+        top: -12px;
+        right: -12px;
+      }
+      .corner-bl {
+        bottom: -12px;
+        left: -12px;
+      }
+      .corner-br {
+        bottom: -12px;
+        right: -12px;
+      }
+      @keyframes frmA {
+        0% {
+          opacity: 0;
+          transform: scale(0.8) translateY(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: scale(1) translateY(0);
+        }
+      }
+      .hero-subtitle {
+        font-family: "Press Start 2P", monospace;
+        font-size: 9px;
+        color: var(--accent);
+        letter-spacing: 4px;
+        margin-bottom: 16px;
+        animation: glitch 5s ease-in-out infinite 1.5s;
+      }
+      .hero-title {
+        font-family: "Press Start 2P", monospace;
+        font-size: clamp(20px, 4vw, 40px);
+        color: #fff;
+        line-height: 1.4;
+        margin-bottom: 18px;
+        text-shadow:
+          4px 4px 0 var(--dirt-dark),
+          -2px -2px 0 rgba(93, 140, 62, 0.5);
+      }
+      .hero-title .hl {
+        color: var(--grass-light);
+      }
+      @keyframes glitch {
+        0%,
+        92%,
+        100% {
+          transform: none;
+          opacity: 1;
+        }
+        93% {
+          transform: translate(-3px, 1px) skewX(-2deg);
+          opacity: 0.8;
+        }
+        95% {
+          transform: translate(2px, -2px);
+          opacity: 0.7;
+        }
+        96% {
+          transform: none;
+          opacity: 1;
+        }
+      }
+      .hero-desc {
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.7);
+        max-width: 500px;
+        line-height: 1.7;
+        margin-bottom: 28px;
+        font-weight: 300;
+      }
+      .hero-buttons {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .btn-mc {
+        font-family: "Press Start 2P", monospace;
+        font-size: 9px;
+        padding: 12px 22px;
+        border: none;
+        cursor: pointer;
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        color: #fff;
+        transition: all 0.15s;
+      }
+      .btn-primary {
+        background: linear-gradient(
+          180deg,
+          var(--grass-light),
+          var(--grass-green) 50%,
+          var(--dirt-dark)
+        );
+        box-shadow:
+          0 4px 0 var(--dirt-dark),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+      }
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 0 var(--dirt-dark);
+      }
+      .btn-primary:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 var(--dirt-dark);
+      }
+      .btn-secondary {
+        background: linear-gradient(180deg, #666, #555 50%, #333);
+        box-shadow: 0 4px 0 #222;
+        border: 2px solid #777;
+      }
+      .btn-secondary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 0 #222;
+      }
+      .btn-secondary:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 #222;
+      }
+      .xp-bar-c {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 10;
+      }
+      .xp-bar {
+        width: 100%;
+        height: 5px;
+        background: rgba(0, 0, 0, 0.6);
+        overflow: hidden;
+      }
+      .xp-fill {
+        height: 100%;
+        width: 0%;
+        background: linear-gradient(90deg, #80ff00, var(--accent));
+        animation: xpF 3s ease-out 1s forwards;
+        box-shadow: 0 0 12px rgba(128, 255, 0, 0.5);
+      }
+      @keyframes xpF {
+        to {
+          width: 73%;
+        }
+      }
+      .xp-lvl {
+        position: absolute;
+        top: -22px;
+        left: 14px;
+        font-family: "Press Start 2P", monospace;
+        font-size: 8px;
+        color: #80ff00;
+        text-shadow: 1px 1px 0 #000;
+      }
+
+      .section-divider {
+        height: 4px;
+        background: repeating-linear-gradient(
+          90deg,
+          var(--grass-green) 0px,
+          var(--grass-green) 32px,
+          var(--dirt-brown) 32px,
+          var(--dirt-brown) 64px
+        );
+      }
+      .main-section {
+        position: relative;
+        z-index: 10;
+        padding: 70px 20px;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 40px;
+      }
+      .section-tag {
+        font-family: "Press Start 2P", monospace;
+        font-size: 8px;
+        color: var(--accent);
+        letter-spacing: 3px;
+        margin-bottom: 12px;
+        display: block;
+      }
+      .section-title {
+        font-family: "Press Start 2P", monospace;
+        font-size: clamp(13px, 2.5vw, 20px);
+        color: #fff;
+        text-shadow: 3px 3px 0 var(--dirt-dark);
+        line-height: 1.5;
+      }
+      .section-desc {
+        margin-top: 12px;
+        font-size: 14px;
+        color: rgba(255, 255, 255, 0.5);
+        max-width: 580px;
+        margin-left: auto;
+        margin-right: auto;
+        font-weight: 300;
+      }
+      .filter-tabs {
+        display: flex;
+        gap: 6px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 32px;
+      }
+      .filter-tab {
+        font-family: "Press Start 2P", monospace;
+        font-size: 8px;
+        padding: 8px 14px;
+        border: 2px solid var(--stone-dark);
+        background: transparent;
+        color: rgba(255, 255, 255, 0.5);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .filter-tab:hover {
+        border-color: var(--grass-green);
+        color: var(--text);
+      }
+      .filter-tab.active {
+        background: var(--grass-green);
+        border-color: var(--grass-green);
+        color: #fff;
+        box-shadow: 0 3px 0 var(--dirt-dark);
+      }
+      .articles-grid {
+        max-width: 1200px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 16px;
+      }
+      @media (max-width: 380px) {
+        .articles-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .article-card {
+        background: var(--card-bg);
+        border: 2px solid var(--card-border);
+        overflow: hidden;
+        transition: all 0.35s;
+        position: relative;
+        cursor: pointer;
+      }
+      .article-card.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .article-card:hover {
+        transform: translateY(-5px);
+        border-color: var(--grass-green);
+        box-shadow: 0 8px 28px rgba(93, 140, 62, 0.12);
+      }
+      .article-card.hidden {
+        display: none;
+      }
+      .card-banner {
+        height: 5px;
+        width: 100%;
+      }
+      .card-banner.seed {
+        background: linear-gradient(
+          90deg,
+          var(--grass-green),
+          var(--grass-light)
+        );
+      }
+      .card-banner.command {
+        background: linear-gradient(90deg, var(--redstone), #ff8800);
+      }
+      .card-banner.build {
+        background: linear-gradient(90deg, #4fc3f7, #0288d1);
+      }
+      .card-banner.survival {
+        background: linear-gradient(90deg, #ffb74d, #e65100);
+      }
+      .card-body {
+        padding: 20px;
+      }
+      .card-tags {
+        display: flex;
+        gap: 5px;
+        flex-wrap: wrap;
+        margin-bottom: 12px;
+      }
+      .card-tag {
+        font-family: "Press Start 2P", monospace;
+        font-size: 6px;
+        padding: 3px 6px;
+        letter-spacing: 1px;
+      }
+      .tag-seed {
+        background: rgba(93, 140, 62, 0.2);
+        color: var(--grass-light);
+        border: 1px solid rgba(93, 140, 62, 0.3);
+      }
+      .tag-command {
+        background: rgba(255, 68, 68, 0.15);
+        color: #ff8888;
+        border: 1px solid rgba(255, 68, 68, 0.25);
+      }
+      .tag-version {
+        background: rgba(74, 237, 217, 0.15);
+        color: var(--diamond);
+        border: 1px solid rgba(74, 237, 217, 0.25);
+      }
+      .tag-popular {
+        background: rgba(255, 215, 0, 0.15);
+        color: var(--gold);
+        border: 1px solid rgba(255, 215, 0, 0.25);
+      }
+      .tag-new {
+        background: rgba(74, 222, 128, 0.15);
+        color: var(--accent);
+        border: 1px solid rgba(74, 222, 128, 0.25);
+      }
+      .tag-survival {
+        background: rgba(255, 152, 0, 0.15);
+        color: #ffb74d;
+        border: 1px solid rgba(255, 152, 0, 0.25);
+      }
+      .tag-technical {
+        background: rgba(171, 71, 188, 0.15);
+        color: #ce93d8;
+        border: 1px solid rgba(171, 71, 188, 0.25);
+      }
+      .tag-builder {
+        background: rgba(79, 195, 247, 0.15);
+        color: #4fc3f7;
+        border: 1px solid rgba(79, 195, 247, 0.25);
+      }
+      .tag-build {
+        background: rgba(79, 195, 247, 0.15);
+        color: #4fc3f7;
+        border: 1px solid rgba(79, 195, 247, 0.25);
+      }
+      .tag-beginner {
+        background: rgba(129, 199, 132, 0.15);
+        color: #81c784;
+        border: 1px solid rgba(129, 199, 132, 0.25);
+      }
+      .tag-advanced {
+        background: rgba(239, 108, 0, 0.15);
+        color: #ef6c00;
+        border: 1px solid rgba(239, 108, 0, 0.25);
+      }
+      .card-title {
+        font-family: "Press Start 2P", monospace;
+        font-size: 10px;
+        color: #fff;
+        line-height: 1.6;
+        margin-bottom: 10px;
+        transition: color 0.3s;
+      }
+      .article-card:hover .card-title {
+        color: var(--grass-light);
+      }
+      .card-desc {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.7;
+        margin-bottom: 14px;
+        font-weight: 300;
+      }
+      .card-code {
+        font-family: "Space Grotesk", monospace;
+        font-size: 11px;
+        background: rgba(0, 0, 0, 0.5);
+        border: 1px solid var(--stone-dark);
+        padding: 7px 10px;
+        margin-bottom: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: all 0.2s;
+        word-break: break-all;
+        line-height: 1.4;
+      }
+      .card-code.seed-code {
+        color: var(--grass-light);
+      }
+      .card-code.cmd-code {
+        color: #ff8888;
+      }
+      .card-code.tip-code {
+        color: #4fc3f7;
+      }
+      .card-code.surv-code {
+        color: #ffb74d;
+      }
+      .card-code:hover {
+        border-color: var(--grass-green);
+        background: rgba(93, 140, 62, 0.06);
+      }
+      .card-code.cmd-code:hover {
+        border-color: var(--redstone);
+        background: rgba(255, 68, 68, 0.06);
+      }
+      .card-code.tip-code:hover {
+        border-color: #4fc3f7;
+        background: rgba(79, 195, 247, 0.06);
+      }
+      .card-code.surv-code:hover {
+        border-color: #ffb74d;
+        background: rgba(255, 183, 77, 0.06);
+      }
+      .card-code .ch {
+        font-family: "Press Start 2P", monospace;
+        font-size: 6px;
+        color: rgba(255, 255, 255, 0.3);
+        white-space: nowrap;
+        margin-left: 8px;
+        transition: color 0.2s;
+      }
+      .card-code:hover .ch {
+        color: var(--accent);
+      }
+      .card-code.cmd-code:hover .ch {
+        color: var(--redstone);
+      }
+      .card-code.tip-code:hover .ch {
+        color: #4fc3f7;
+      }
+      .card-code.surv-code:hover .ch {
+        color: #ffb74d;
+      }
+      .card-meta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.28);
+      }
+      .card-meta span {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .about-section {
+        background: linear-gradient(180deg, #0b1018, #0f1820);
+        position: relative;
+        overflow: hidden;
+      }
+      .about-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background:
+          radial-gradient(
+            ellipse at 20% 50%,
+            rgba(93, 140, 62, 0.06) 0%,
+            transparent 60%
+          ),
+          radial-gradient(
+            ellipse at 80% 50%,
+            rgba(74, 237, 217, 0.04) 0%,
+            transparent 60%
+          );
+        pointer-events: none;
+      }
+      .about-grid {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        align-items: start;
+      }
+      @media (max-width: 768px) {
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      .about-text h3 {
+        font-family: "Press Start 2P", monospace;
+        font-size: 11px;
+        color: var(--grass-light);
+        margin-bottom: 14px;
+        line-height: 1.6;
+      }
+      .about-text p {
+        font-size: 13px;
+        color: rgba(255, 255, 255, 0.5);
+        line-height: 1.8;
+        margin-bottom: 14px;
+        font-weight: 300;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+      .about-stat-card {
+        background: var(--card-bg);
+        border: 2px solid var(--card-border);
+        padding: 18px;
+        text-align: center;
+        transition: all 0.3s;
+      }
+      .about-stat-card:hover {
+        border-color: var(--grass-green);
+        transform: translateY(-3px);
+      }
+      .about-stat-card .num {
+        font-family: "Press Start 2P", monospace;
+        font-size: 16px;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .about-stat-card .lbl {
+        font-family: "Press Start 2P", monospace;
+        font-size: 6px;
+        color: rgba(255, 255, 255, 0.4);
+        letter-spacing: 1px;
+      }
+
+      .policy-section {
+        background: #080c12;
+      }
+      .policy-content {
+        max-width: 780px;
+        margin: 0 auto;
+        background: var(--card-bg);
+        border: 2px solid var(--card-border);
+        padding: 40px;
+        position: relative;
+      }
+      .policy-content::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(
+          90deg,
+          var(--grass-green),
+          var(--dirt-brown),
+          var(--stone-dark)
+        );
+      }
+      .policy-content h3 {
+        font-family: "Press Start 2P", monospace;
+        font-size: 10px;
+        color: var(--grass-light);
+        margin: 24px 0 12px;
+        line-height: 1.6;
+      }
+      .policy-content h3:first-of-type {
+        margin-top: 0;
+      }
+      .policy-content p {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.9;
+        margin-bottom: 12px;
+        font-weight: 300;
+      }
+      .policy-content ul {
+        padding-left: 16px;
+        margin-bottom: 12px;
+      }
+      .policy-content li {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.42);
+        line-height: 1.9;
+        margin-bottom: 5px;
+        font-weight: 300;
+        list-style: none;
+        position: relative;
+        padding-left: 14px;
+      }
+      .policy-content li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 9px;
+        width: 5px;
+        height: 5px;
+        background: var(--grass-green);
+      }
+      .policy-date {
+        font-family: "Press Start 2P", monospace;
+        font-size: 7px;
+        color: rgba(255, 255, 255, 0.25);
+        margin-bottom: 28px;
+        display: block;
+      }
+
+      .site-footer {
+        border-top: 3px solid var(--stone-dark);
+        padding: 36px 20px;
+        text-align: center;
+        background: #060a0f;
+      }
+      .footer-logo {
+        font-family: "Press Start 2P", monospace;
+        font-size: 11px;
+        color: var(--grass-light);
+        margin-bottom: 14px;
+        text-shadow: 2px 2px 0 var(--dirt-dark);
+      }
+      .footer-links {
+        display: flex;
+        gap: 16px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .footer-links a {
+        font-size: 11px;
+        color: rgba(255, 255, 255, 0.35);
+        text-decoration: none;
+        transition: color 0.3s;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+      .footer-copy {
+        font-size: 10px;
+        color: rgba(255, 255, 255, 0.2);
+      }
+
+      .toast {
+        position: fixed;
+        bottom: 28px;
+        right: 28px;
+        z-index: 1000;
+        background: rgba(20, 30, 20, 0.95);
+        border: 3px solid var(--grass-green);
+        padding: 12px 18px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transform: translateX(calc(100% + 40px));
+        transition: transform 0.4s;
+        backdrop-filter: blur(8px);
+      }
+      .toast.show {
+        transform: translateX(0);
+      }
+      .toast-text {
+        font-family: "Press Start 2P", monospace;
+        font-size: 7px;
+        color: var(--accent);
+        line-height: 1.6;
+      }
+      .scroll-top {
+        position: fixed;
+        bottom: 28px;
+        left: 28px;
+        z-index: 1000;
+        width: 40px;
+        height: 40px;
+        border: 2px solid var(--grass-green);
+        background: rgba(10, 20, 30, 0.9);
+        color: var(--grass-light);
+        cursor: pointer;
+        font-size: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        pointer-events: none;
+        transition: all 0.3s;
+      }
+      .scroll-top.show {
+        opacity: 1;
+        pointer-events: auto;
+      }
+      .scroll-top:hover {
+        background: var(--grass-green);
+        color: #fff;
+      }
+      .reveal {
+        opacity: 0;
+        transform: translateY(30px);
+        transition:
+          opacity 0.6s,
+          transform 0.6s;
+      }
+      .reveal.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      .cursor-block {
+        position: fixed;
+        pointer-events: none;
+        z-index: 9999;
+        image-rendering: pixelated;
+        opacity: 0;
+      }
+      .load-more-wrap {
+        text-align: center;
+        margin-top: 36px;
+      }
+      .load-more-btn {
+        font-family: "Press Start 2P", monospace;
+        font-size: 9px;
+        padding: 12px 28px;
+        background: linear-gradient(
+          180deg,
+          var(--grass-light),
+          var(--grass-green) 50%,
+          var(--dirt-dark)
+        );
+        border: none;
+        color: #fff;
+        cursor: pointer;
+        box-shadow: 0 4px 0 var(--dirt-dark);
+        transition: all 0.15s;
+      }
+      .load-more-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 7px 0 var(--dirt-dark);
+      }
+      .load-more-btn:active {
+        transform: translateY(1px);
+        box-shadow: 0 1px 0 var(--dirt-dark);
+      }
+      .load-more-btn:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        transform: none;
+        box-shadow: 0 4px 0 var(--dirt-dark);
+      }
+      .counter-row {
+        display: flex;
+        gap: 32px;
+        justify-content: center;
+        flex-wrap: wrap;
+        padding: 28px 20px;
+        background: rgba(0, 0, 0, 0.3);
+        border-top: 2px solid var(--stone-dark);
+        border-bottom: 2px solid var(--stone-dark);
+      }
+      .counter-item {
+        text-align: center;
+      }
+      .counter-num {
+        font-family: "Press Start 2P", monospace;
+        font-size: 16px;
+        color: var(--accent);
+        display: block;
+        margin-bottom: 6px;
+      }
+      .counter-lbl {
+        font-family: "Press Start 2P", monospace;
+        font-size: 7px;
+        color: rgba(255, 255, 255, 0.35);
+        letter-spacing: 1px;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar" role="navigation" aria-label="Main navigation">
+      <a href="#" class="nav-logo" aria-label="Home"
+        ><div class="logo-icon">
+          <div class="gt"></div>
+          <div class="db"></div>
+          <div class="dp" style="top: 12px; left: 6px"></div>
+          <div class="dp" style="top: 20px; left: 18px"></div>
+        </div>
+        <span class="logo-text">CRAFT</span></a
+      >
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#seeds">SEEDS</a></li>
+        <li><a href="#commands">COMMANDS</a></li>
+        <li><a href="#buildtips">BUILD</a></li>
+        <li><a href="#survtips">SURVIVAL</a></li>
+        <li><a href="#about">ABOUT</a></li>
+        <li><a href="#policy">POLICY</a></li>
+        <li><a href="#" class="nav-cta">PLAY NOW</a></li>
+      </ul>
+      <button
+        class="mobile-menu-btn"
+        id="mobileMenuBtn"
+        aria-label="Toggle menu"
+      >
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
+
+    <header class="hero">
+      <div class="sky"></div>
+      <div class="stars" id="stars"></div>
+      <div class="sun"></div>
+      <div class="clouds-c">
+        <div class="cloud c1"></div>
+        <div class="cloud c2"></div>
+        <div class="cloud c3"></div>
+      </div>
+      <div class="terrain">
+        <svg
+          class="terrain-svg"
+          viewBox="0 0 1440 500"
+          preserveAspectRatio="none"
+        >
+          <path
+            d="M0,300 L0,220 L60,180 L120,200 L180,140 L240,170 L300,100 L360,150 L420,90 L480,130 L540,80 L600,120 L660,70 L720,110 L780,60 L840,100 L900,50 L960,90 L1020,60 L1080,100 L1140,70 L1200,120 L1260,80 L1320,140 L1380,100 L1440,130 L1440,300Z"
+            fill="#4A4A4A"
+            opacity=".5"
+          />
+          <path
+            d="M0,300 L0,260 L80,220 L140,240 L200,190 L280,220 L340,170 L400,210 L480,160 L540,200 L620,150 L700,190 L760,140 L840,180 L900,130 L960,170 L1040,140 L1100,180 L1180,150 L1240,190 L1320,160 L1380,200 L1440,180 L1440,300Z"
+            fill="#5D8C3E"
+            opacity=".6"
+          />
+          <rect x="60" y="230" width="20" height="40" fill="#5D4037" />
+          <rect x="50" y="200" width="40" height="40" fill="#2E7D32" />
+          <rect x="180" y="210" width="20" height="50" fill="#5D4037" />
+          <rect x="165" y="175" width="50" height="45" fill="#388E3C" />
+          <rect x="350" y="195" width="20" height="45" fill="#5D4037" />
+          <rect x="338" y="160" width="44" height="45" fill="#2E7D32" />
+          <rect x="540" y="205" width="20" height="40" fill="#5D4037" />
+          <rect x="530" y="175" width="40" height="40" fill="#388E3C" />
+          <rect x="760" y="185" width="20" height="45" fill="#5D4037" />
+          <rect x="748" y="150" width="44" height="45" fill="#2E7D32" />
+          <rect x="960" y="195" width="20" height="40" fill="#5D4037" />
+          <rect x="950" y="165" width="40" height="40" fill="#388E3C" />
+          <rect x="1180" y="200" width="20" height="45" fill="#5D4037" />
+          <rect x="1168" y="165" width="44" height="45" fill="#2E7D32" />
+          <rect x="0" y="280" width="1440" height="16" fill="#5D8C3E" />
+          <rect x="0" y="272" width="1440" height="8" fill="#7CBD6B" />
+          <rect x="0" y="296" width="1440" height="24" fill="#8B6914" />
+          <rect x="0" y="320" width="1440" height="24" fill="#7A5C12" />
+          <rect x="0" y="344" width="1440" height="24" fill="#6B4E0A" />
+          <rect x="0" y="368" width="1440" height="24" fill="#5C4108" />
+          <rect x="0" y="392" width="1440" height="24" fill="#6A6A6A" />
+          <rect x="0" y="416" width="1440" height="24" fill="#5A5A5A" />
+          <rect x="0" y="440" width="1440" height="60" fill="#4A4A4A" />
+          <rect
+            x="96"
+            y="400"
+            width="16"
+            height="16"
+            fill="#4AEDD9"
+            opacity=".6"
+          />
+          <rect
+            x="400"
+            y="424"
+            width="16"
+            height="16"
+            fill="#FFD700"
+            opacity=".5"
+          />
+          <rect
+            x="800"
+            y="400"
+            width="16"
+            height="16"
+            fill="#FF4444"
+            opacity=".5"
+          />
+          <rect
+            x="1200"
+            y="440"
+            width="16"
+            height="16"
+            fill="#4AEDD9"
+            opacity=".5"
+          />
+        </svg>
+      </div>
+      <div class="particles" id="particles"></div>
+      <div class="scanlines"></div>
+      <div class="hero-content">
+        <div class="pixel-frame">
+          <div class="corner corner-tl"></div>
+          <div class="corner corner-tr"></div>
+          <div class="corner corner-bl"></div>
+          <div class="corner corner-br"></div>
+          <p class="hero-subtitle">Welcome to the world of</p>
+          <h1 class="hero-title">
+            <span class="hl">MINECRAFT</span><br />REIMAGINED
+          </h1>
+          <p class="hero-desc">
+            110 guides covering seeds, commands, build tricks, and survival
+            strategies. Everything you need to master the game.
+          </p>
+          <div class="hero-buttons">
+            <a href="#seeds" class="btn-mc btn-primary"
+              ><i class="fas fa-seedling"></i> SEEDS</a
+            >
+            <a href="#commands" class="btn-mc btn-secondary"
+              ><i class="fas fa-terminal"></i> COMMANDS</a
+            >
+            <a href="#buildtips" class="btn-mc btn-secondary"
+              ><i class="fas fa-cubes"></i> BUILD</a
+            >
+            <a href="#survtips" class="btn-mc btn-secondary"
+              ><i class="fas fa-shield-halved"></i> SURVIVAL</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="xp-bar-c">
+        <span class="xp-lvl">LEVEL 73</span>
+        <div class="xp-bar"><div class="xp-fill"></div></div>
+      </div>
+    </header>
+
+    <div class="counter-row reveal">
+      <div class="counter-item">
+        <span class="counter-num">35</span
+        ><span class="counter-lbl">BEST SEEDS</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num">35</span
+        ><span class="counter-lbl">COMMANDS</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num">20</span
+        ><span class="counter-lbl">BUILD TIPS</span>
+      </div>
+      <div class="counter-item">
+        <span class="counter-num">20</span
+        ><span class="counter-lbl">SURVIVAL TIPS</span>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <section
+      class="main-section"
+      id="seeds"
+      style="background: var(--section-bg)"
+    >
+      <div class="section-header reveal">
+        <span class="section-tag">// WORLD GENERATION</span>
+        <h2 class="section-title">BEST SEEDS 2026</h2>
+        <p class="section-desc">
+          35 hand-picked world seeds generating incredible landscapes,
+          structures, and resources at spawn.
+        </p>
+      </div>
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">ALL</button
+        ><button class="filter-tab" data-filter="seed">SEEDS</button
+        ><button class="filter-tab" data-filter="popular">POPULAR</button
+        ><button class="filter-tab" data-filter="new">NEW 2026</button
+        ><button class="filter-tab" data-filter="survival">SURVIVAL</button
+        ><button class="filter-tab" data-filter="builder">BUILDER</button>
+      </div>
+      <div class="articles-grid" id="seedsGrid"></div>
+      <div class="load-more-wrap reveal">
+        <button class="load-more-btn" id="loadMoreSeeds">
+          LOAD MORE SEEDS
+        </button>
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <section class="main-section" id="commands" style="background: #090e15">
+      <div class="section-header reveal">
+        <span class="section-tag">// CONSOLE MASTERY</span>
+        <h2 class="section-title">BEST COMMANDS 2026</h2>
+        <p class="section-desc">
+          35 essential commands from basic teleportation to advanced world
+          manipulation.
+        </p>
+      </div>
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">ALL</button
+        ><button class="filter-tab" data-filter="command">COMMANDS</button
+        ><button class="filter-tab" data-filter="popular">POPULAR</button
+        ><button class="filter-tab" data-filter="new">NEW 2026</button
+        ><button class="filter-tab" data-filter="technical">TECHNICAL</button>
+      </div>
+      <div class="articles-grid" id="commandsGrid"></div>
+      <div class="load-more-wrap reveal">
+        <button class="load-more-btn" id="loadMoreCmds">
+          LOAD MORE COMMANDS
+        </button>
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <section class="main-section" id="buildtips" style="background: #0a0f18">
+      <div class="section-header reveal">
+        <span class="section-tag">// CREATIVE MASTERY</span>
+        <h2 class="section-title">BUILD TIPS & TRICKS</h2>
+        <p class="section-desc">
+          20 pro techniques to elevate your building from basic to breathtaking.
+          Depth, detail, and design secrets.
+        </p>
+      </div>
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">ALL</button
+        ><button class="filter-tab" data-filter="build">BUILD</button
+        ><button class="filter-tab" data-filter="popular">POPULAR</button
+        ><button class="filter-tab" data-filter="new">NEW 2026</button
+        ><button class="filter-tab" data-filter="beginner">BEGINNER</button
+        ><button class="filter-tab" data-filter="advanced">ADVANCED</button>
+      </div>
+      <div class="articles-grid" id="buildGrid"></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <section class="main-section" id="survtips" style="background: #0c0a06">
+      <div class="section-header reveal">
+        <span class="section-tag">// STAY ALIVE</span>
+        <h2 class="section-title">SURVIVAL TIPS & TRICKS</h2>
+        <p class="section-desc">
+          20 critical strategies from first night to End dragon. Outlast,
+          outmine, outbuild every threat.
+        </p>
+      </div>
+      <div class="filter-tabs reveal">
+        <button class="filter-tab active" data-filter="all">ALL</button
+        ><button class="filter-tab" data-filter="survival">SURVIVAL</button
+        ><button class="filter-tab" data-filter="popular">POPULAR</button
+        ><button class="filter-tab" data-filter="new">NEW 2026</button
+        ><button class="filter-tab" data-filter="beginner">BEGINNER</button
+        ><button class="filter-tab" data-filter="advanced">ADVANCED</button>
+      </div>
+      <div class="articles-grid" id="survGrid"></div>
+    </section>
+    <div class="section-divider"></div>
+
+    <section class="main-section about-section" id="about">
+      <div class="section-header reveal">
+        <span class="section-tag">// WHO WE ARE</span>
+        <h2 class="section-title">ABOUT CRAFT</h2>
+      </div>
+      <div class="about-grid">
+        <div class="about-text reveal">
+          <h3>YOUR MINECRAFT HUB SINCE 2024</h3>
+          <p>
+            Craft was built by a small team of dedicated Minecraft players who
+            got tired of scattered, outdated seed lists and command references.
+            We wanted one place where every seed is tested, every command is
+            verified, and every tip actually works.
+          </p>
+          <p>
+            Our team tests every seed on the latest Java and Bedrock versions.
+            We document exact coordinates, note version-specific differences,
+            and verify every build tip in creative mode before publishing.
+          </p>
+          <p>
+            For survival tips, we run speed tests and comparison builds to prove
+            which strategies actually save time. No hearsay, no outdated advice
+            from 2019. Every tip is current for 2026 gameplay.
+          </p>
+          <h3>OUR MISSION</h3>
+          <p>
+            Make the technical and creative sides of Minecraft accessible to
+            everyone, from day-one players to veteran redstone engineers and
+            master builders.
+          </p>
+        </div>
+        <div class="reveal">
+          <div class="about-stats">
+            <div class="about-stat-card">
+              <span class="num">700+</span><span class="lbl">SEEDS TESTED</span>
+            </div>
+            <div class="about-stat-card">
+              <span class="num">350+</span
+              ><span class="lbl">COMMANDS COVERED</span>
+            </div>
+            <div class="about-stat-card">
+              <span class="num">250K</span
+              ><span class="lbl">MONTHLY READERS</span>
+            </div>
+            <div class="about-stat-card">
+              <span class="num">12</span><span class="lbl">TEAM MEMBERS</span>
+            </div>
+            <div class="about-stat-card">
+              <span class="num">110</span><span class="lbl">TOTAL GUIDES</span>
+            </div>
+            <div class="about-stat-card">
+              <span class="num">24/7</span
+              ><span class="lbl">COMMUNITY DISCORD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="section-divider"></div>
+
+    <section class="main-section policy-section" id="policy">
+      <div class="section-header reveal">
+        <span class="section-tag">// LEGAL</span>
+        <h2 class="section-title">PRIVACY POLICY</h2>
+      </div>
+      <div class="policy-content reveal">
+        <span class="policy-date">LAST UPDATED: JANUARY 15, 2026</span>
+        <h3>1. INFORMATION WE COLLECT</h3>
+        <p>
+          We collect minimal information: voluntarily provided data like name
+          and email for newsletters, and automatic data like browser type and
+          usage patterns through cookies and analytics.
+        </p>
+        <h3>2. HOW WE USE YOUR INFORMATION</h3>
+        <ul>
+          <li>
+            Deliver and personalize content including seed recommendations and
+            guides
+          </li>
+          <li>Send newsletter updates about new seeds, commands, and tips</li>
+          <li>Analyze site usage to improve content quality and performance</li>
+          <li>Respond to inquiries and provide support</li>
+        </ul>
+        <h3>3. COOKIES AND TRACKING</h3>
+        <p>
+          Essential cookies for functionality and analytics cookies for usage
+          insights. Disable non-essential cookies via browser settings.
+        </p>
+        <h3>4. THIRD-PARTY SERVICES</h3>
+        <p>
+          Analytics platforms and CDNs may collect anonymized browsing data. We
+          never sell personal information.
+        </p>
+        <h3>5. DATA SECURITY</h3>
+        <p>
+          HTTPS encryption, secure servers, regular audits, and access controls
+          protect your data.
+        </p>
+        <h3>6. CHILDREN'S PRIVACY</h3>
+        <p>
+          We do not knowingly collect data from children under 13 without
+          parental consent.
+        </p>
+        <h3>7. YOUR RIGHTS</h3>
+        <ul>
+          <li>Access, correct, and delete your personal data</li>
+          <li>Opt out of marketing communications</li>
+          <li>Request data portability in machine-readable format</li>
+        </ul>
+        <h3>8. CHANGES TO THIS POLICY</h3>
+        <p>
+          We update periodically and notify via prominent site notice. Continued
+          use constitutes acceptance.
+        </p>
+        <h3>9. CONTACT US</h3>
+        <p>
+          Reach us at privacy@craftmc.gg or our Discord server for any
+          privacy-related inquiries.
+        </p>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="footer-logo">CRAFT</div>
+      <div class="footer-links">
+        <a href="#seeds">Seeds</a><a href="#commands">Commands</a
+        ><a href="#buildtips">Build Tips</a><a href="#survtips">Survival Tips</a
+        ><a href="#about">About</a><a href="#policy">Privacy Policy</a
+        ><a href="#">Discord</a><a href="#">YouTube</a>
+      </div>
+      <p class="footer-copy">
+        2026 Craft. Not affiliated with Mojang Studios or Microsoft. Minecraft
+        is a trademark of Mojang AB.
+      </p>
+    </footer>
+
+    <div class="toast" id="toast" role="alert">
+      <span style="color: var(--grass-light); font-size: 16px"
+        ><i class="fas fa-cube"></i></span
+      ><span class="toast-text">Achievement Unlocked:<br />First Steps</span>
+    </div>
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
+    <script>
+      // ===== SEEDS (35) =====
+      var seedsData = [
+        {
+          id: 1,
+          title: "Triple Village Spawn",
+          desc: "Spawn between three interconnected villages with blacksmith, farms, and iron golem. Perfect early-game with unlimited trading.",
+          code: "482917395016283",
+          tags: ["seed", "popular", "version"],
+          tl: ["SEED", "POPULAR", "1.21.4"],
+          views: "89K",
+          date: "Jan 2026",
+        },
+        {
+          id: 2,
+          title: "Ocean Monument at Spawn",
+          desc: "Ocean monument visible from spawn. Contains 8 gold blocks and sponge rooms. Challenging underwater start.",
+          code: "-773952009184219",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "34K",
+          date: "Jan 2026",
+        },
+        {
+          id: 3,
+          title: "Ancient City Beneath Spawn",
+          desc: "Ancient city directly beneath spawn at Y=-51. Walk 20 blocks down into the deep dark.",
+          code: "290473198504716",
+          tags: ["seed", "popular", "version"],
+          tl: ["SEED", "POPULAR", "1.21.4"],
+          views: "112K",
+          date: "Dec 2025",
+        },
+        {
+          id: 4,
+          title: "Mushroom Island Paradise",
+          desc: "Massive mushroom island at spawn with no hostile mobs. Mooshrooms and mycelium everywhere.",
+          code: "839203847561029",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "56K",
+          date: "Jan 2026",
+        },
+        {
+          id: 5,
+          title: "Woodland Mansion Overlook",
+          desc: "Mansion atop a hill overlooking a plains village. 3 floors with loot rooms and map room.",
+          code: "-590318072384712",
+          tags: ["seed", "popular", "version"],
+          tl: ["SEED", "POPULAR", "1.21.4"],
+          views: "78K",
+          date: "Nov 2025",
+        },
+        {
+          id: 6,
+          title: "All-Biome Junction",
+          desc: "Spawn at intersection of 12 biomes: jungle, desert, taiga, badlands, ocean, swamp. Every resource within 500 blocks.",
+          code: "610293847562938",
+          tags: ["seed", "new", "version", "survival"],
+          tl: ["SEED", "NEW 2026", "1.21.4", "SURVIVAL"],
+          views: "145K",
+          date: "Jan 2026",
+        },
+        {
+          id: 7,
+          title: "Shipwreck Reef Start",
+          desc: "Tiny reef island next to shipwreck with buried treasure map. Diamonds and heart of the sea inside.",
+          code: "-284719503847261",
+          tags: ["seed", "version", "survival"],
+          tl: ["SEED", "1.21.4", "SURVIVAL"],
+          views: "29K",
+          date: "Dec 2025",
+        },
+        {
+          id: 8,
+          title: "Exposed Diamond Cave",
+          desc: "Massive cave at spawn with 40+ visible diamond ores. No digging required, just watch for lava.",
+          code: "738291046582037",
+          tags: ["seed", "popular", "version"],
+          tl: ["SEED", "POPULAR", "1.21.4"],
+          views: "203K",
+          date: "Oct 2025",
+        },
+        {
+          id: 9,
+          title: "Cherry Blossom Valley",
+          desc: "Stunning cherry grove valley surrounded by snow mountains. Pink petals over frozen lake. Most scenic 2026.",
+          code: "192837465019283",
+          tags: ["seed", "new", "popular", "builder"],
+          tl: ["SEED", "NEW 2026", "POPULAR", "BUILDER"],
+          views: "167K",
+          date: "Jan 2026",
+        },
+        {
+          id: 10,
+          title: "Stronghold Under Village Well",
+          desc: "Portal room directly below village well at 30 blocks down. No eyes of ender needed.",
+          code: "-847261930485726",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "91K",
+          date: "Jan 2026",
+        },
+        {
+          id: 11,
+          title: "Desert Temple Double",
+          desc: "Two desert temples side by side with 8 chests combined. Diamonds, emeralds, and TNT traps.",
+          code: "562918304728156",
+          tags: ["seed", "version"],
+          tl: ["SEED", "1.21.4"],
+          views: "41K",
+          date: "Nov 2025",
+        },
+        {
+          id: 12,
+          title: "Ice Spikes Fortress",
+          desc: "Ice spikes biome with pillager outpost on frozen lake. Blue spikes and red banners look cinematic.",
+          code: "-319284756019283",
+          tags: ["seed", "new", "version", "builder"],
+          tl: ["SEED", "NEW 2026", "1.21.4", "BUILDER"],
+          views: "37K",
+          date: "Jan 2026",
+        },
+        {
+          id: 13,
+          title: "Lush Caves Network",
+          desc: "Drop through spawn hole into enormous lush caves with azalea trees, dripstone, and axolotls.",
+          code: "847291038475629",
+          tags: ["seed", "popular", "version"],
+          tl: ["SEED", "POPULAR", "1.21.4"],
+          views: "63K",
+          date: "Dec 2025",
+        },
+        {
+          id: 14,
+          title: "Nether Fortress at Portal",
+          desc: "Fortress visible from spawn portal. Blaze spawners within 50 blocks. Speedrun ready.",
+          code: "-629384710293847",
+          tags: ["seed", "popular", "version", "survival"],
+          tl: ["SEED", "POPULAR", "1.21.4", "SURVIVAL"],
+          views: "85K",
+          date: "Sep 2025",
+        },
+        {
+          id: 15,
+          title: "Mega Taiga Stronghold",
+          desc: "Giant spruce taiga on surface, intact stronghold at Y=-28 below. Best of both worlds.",
+          code: "401928375610293",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "48K",
+          date: "Jan 2026",
+        },
+        {
+          id: 16,
+          title: "Savanna Plateau Villages",
+          desc: "Three villages on tiered plateaus connected by waterfalls. Acacia wood and livestock abundance.",
+          code: "719283746501928",
+          tags: ["seed", "new", "builder"],
+          tl: ["SEED", "NEW 2026", "BUILDER"],
+          views: "52K",
+          date: "Jan 2026",
+        },
+        {
+          id: 17,
+          title: "Jungle Temple Grid",
+          desc: "Four temples in perfect grid in dense jungle. Combined chests yield 20+ diamonds worth of loot.",
+          code: "-482019384756201",
+          tags: ["seed", "survival", "version"],
+          tl: ["SEED", "SURVIVAL", "1.21.4"],
+          views: "38K",
+          date: "Dec 2025",
+        },
+        {
+          id: 18,
+          title: "Bamboo Monastery",
+          desc: "Bamboo jungle with pillager outpost on cliff overlooking pandas. Green landscape for thousands of blocks.",
+          code: "938475620193847",
+          tags: ["seed", "new", "builder"],
+          tl: ["SEED", "NEW 2026", "BUILDER"],
+          views: "44K",
+          date: "Jan 2026",
+        },
+        {
+          id: 19,
+          title: "End City Cluster",
+          desc: "Main island gateway leads to 6 End cities within ship distance. Shulker boxes and elytra everywhere.",
+          code: "-192837465019283",
+          tags: ["seed", "popular", "survival"],
+          tl: ["SEED", "POPULAR", "SURVIVAL"],
+          views: "128K",
+          date: "Nov 2025",
+        },
+        {
+          id: 20,
+          title: "Badlands Gold Canyon",
+          desc: "Deep canyon with exposed gold veins at Y=32. Surface gold visible from spawn. 200+ gold in 10 minutes.",
+          code: "582039485716293",
+          tags: ["seed", "new", "popular"],
+          tl: ["SEED", "NEW 2026", "POPULAR"],
+          views: "97K",
+          date: "Jan 2026",
+        },
+        {
+          id: 21,
+          title: "Tundra Igloo Basement",
+          desc: "Igloo with lab containing brewing stand, golden apple, and zombie villager to cure at spawn.",
+          code: "-738291046582037",
+          tags: ["seed", "survival", "version"],
+          tl: ["SEED", "SURVIVAL", "1.21.4"],
+          views: "55K",
+          date: "Oct 2025",
+        },
+        {
+          id: 22,
+          title: "Coral Reef Paradise",
+          desc: "Enormous warm ocean reef with all 5 coral types, sea pickles, tropical fish, and dolphins.",
+          code: "481029384756102",
+          tags: ["seed", "builder", "version"],
+          tl: ["SEED", "BUILDER", "1.21.4"],
+          views: "33K",
+          date: "Dec 2025",
+        },
+        {
+          id: 23,
+          title: "Mountain Peak Stronghold",
+          desc: "Stronghold inside mountain at Y=120, partially exposed by cave openings. Unique cross-section view.",
+          code: "-619283746501928",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "61K",
+          date: "Jan 2026",
+        },
+        {
+          id: 24,
+          title: "Swamp Hut Double",
+          desc: "Two witch huts within 30 blocks. Build witch farm immediately with slime doubling potential.",
+          code: "384756201938475",
+          tags: ["seed", "technical", "version"],
+          tl: ["SEED", "TECHNICAL", "1.21.4"],
+          views: "47K",
+          date: "Nov 2025",
+        },
+        {
+          id: 25,
+          title: "Plains Village Fortress",
+          desc: "15+ building village in natural stone ring. Defensible from all sides, 4 iron golems already.",
+          code: "-501928374650192",
+          tags: ["seed", "survival", "popular"],
+          tl: ["SEED", "SURVIVAL", "POPULAR"],
+          views: "73K",
+          date: "Dec 2025",
+        },
+        {
+          id: 26,
+          title: "Dripstone Cavern Spawn",
+          desc: "Spawn inside massive dripstone cave with giant stalactites forming natural columns and lava below.",
+          code: "928374650192837",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "42K",
+          date: "Jan 2026",
+        },
+        {
+          id: 27,
+          title: "Sunflower Plains Mega",
+          desc: "Largest sunflower plains ever documented, 8000+ blocks each direction. Incredible horse spawns.",
+          code: "-384756201938475",
+          tags: ["seed", "builder", "popular"],
+          tl: ["SEED", "BUILDER", "POPULAR"],
+          views: "86K",
+          date: "Sep 2025",
+        },
+        {
+          id: 28,
+          title: "Ocean Ruins Grid",
+          desc: "9 ocean ruins visible from surface at spawn with suspicious sand for archaeology loot and armor trims.",
+          code: "629384710293847",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "39K",
+          date: "Jan 2026",
+        },
+        {
+          id: 29,
+          title: "Giant Tree Taiga Base",
+          desc: "Podzol giant taiga with 2x2 spruce reaching Y=30. Dark forest floor with mushrooms and moss.",
+          code: "-847261930485726",
+          tags: ["seed", "builder", "survival"],
+          tl: ["SEED", "BUILDER", "SURVIVAL"],
+          views: "51K",
+          date: "Oct 2025",
+        },
+        {
+          id: 30,
+          title: "Trail Ruins Valley",
+          desc: "5 trail ruins with gravel patches containing armor trims, pottery sherds, and rare archaeology items.",
+          code: "192837465019283",
+          tags: ["seed", "new", "version"],
+          tl: ["SEED", "NEW 2026", "1.21.4"],
+          views: "35K",
+          date: "Jan 2026",
+        },
+        {
+          id: 31,
+          title: "Eroded Badlands Spikes",
+          desc: "Badlands meets eroded badlands creating natural tower formations. Terracotta layers and dead bushes.",
+          code: "-562918304728156",
+          tags: ["seed", "builder", "version"],
+          tl: ["SEED", "BUILDER", "1.21.4"],
+          views: "46K",
+          date: "Nov 2025",
+        },
+        {
+          id: 32,
+          title: "Deep Dark Twin Cities",
+          desc: "Two ancient cities connected by sculk corridor at spawn depth. Double loot, double warden danger.",
+          code: "738291046582037",
+          tags: ["seed", "popular", "survival"],
+          tl: ["SEED", "POPULAR", "SURVIVAL"],
+          views: "104K",
+          date: "Dec 2025",
+        },
+        {
+          id: 33,
+          title: "Floating Island Chain",
+          desc: "8 floating islands connected by land bridges at Y=140. Each island has a different biome.",
+          code: "-938475620193847",
+          tags: ["seed", "new", "popular", "builder"],
+          tl: ["SEED", "NEW 2026", "POPULAR", "BUILDER"],
+          views: "189K",
+          date: "Jan 2026",
+        },
+        {
+          id: 34,
+          title: "Village on the Ocean",
+          desc: "Coastal village extending into ocean with buildings on small islands connected by wooden bridges.",
+          code: "482019384756201",
+          tags: ["seed", "builder", "new"],
+          tl: ["SEED", "BUILDER", "NEW 2026"],
+          views: "57K",
+          date: "Jan 2026",
+        },
+        {
+          id: 35,
+          title: "Perfect Speedrun Seed",
+          desc: "Village with beds, iron, food. Nether fortress 50 blocks away. Stronghold under village. Sub-8 minute.",
+          code: "-290473198504716",
+          tags: ["seed", "popular", "survival"],
+          tl: ["SEED", "POPULAR", "SURVIVAL"],
+          views: "231K",
+          date: "Oct 2025",
+        },
+      ];
+
+      // ===== COMMANDS (35) =====
+      var commandsData = [
+        {
+          id: 36,
+          title: "/execute - Master Command",
+          desc: "Run commands as different entities, at different positions, with conditions. Backbone of advanced Minecraft.",
+          code: "/execute as @a at @s run say Hello",
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "194K",
+          date: "Jan 2026",
+        },
+        {
+          id: 37,
+          title: "/give - Custom Items",
+          desc: "Create items with custom names, lore, enchantments, and attributes. Unbreakable weapons and named tools.",
+          code: '/give @p diamond_sword{display:{Name:\'{"text":"Excalibur"}\'}} 1',
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "156K",
+          date: "Dec 2025",
+        },
+        {
+          id: 38,
+          title: "/tp - Teleportation",
+          desc: "Teleport to coordinates, players, or relative positions. 2026 added rotation locking and facing arguments.",
+          code: "/tp @s ~ ~ ~ ~180 ~0",
+          tags: ["command", "version"],
+          tl: ["COMMAND", "1.21.4"],
+          views: "132K",
+          date: "Nov 2025",
+        },
+        {
+          id: 39,
+          title: "/summon - Entity Spawning",
+          desc: "Spawn any entity with custom NBT, equipment, passengers, and behavior tags. Custom bosses made easy.",
+          code: "/summon zombie ~ ~ ~ {HandItems:[{id:diamond_sword,Count:1}]}",
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "87K",
+          date: "Jan 2026",
+        },
+        {
+          id: 40,
+          title: "/fill - World Shaping",
+          desc: "Fill regions with any block, replacing only specific types. Essential for programmatic building.",
+          code: "/fill ~1 ~ ~ ~10 ~10 ~10 grass_block replace stone",
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "118K",
+          date: "Oct 2025",
+        },
+        {
+          id: 41,
+          title: "/data - NBT Manipulation",
+          desc: "Read, modify, merge, remove NBT from entities and block entities. 2026 syntax is cleaner and more powerful.",
+          code: "/data modify entity @p Health set value 20",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "72K",
+          date: "Jan 2026",
+        },
+        {
+          id: 42,
+          title: "/clone - Structure Duplication",
+          desc: "Clone regions with mask modes, rotation, and mirroring. Duplicate and flip buildings instantly.",
+          code: "/clone ~ ~ ~ ~10 ~10 ~10 ~20 ~ ~ mirrored",
+          tags: ["command", "version"],
+          tl: ["COMMAND", "1.21.4"],
+          views: "64K",
+          date: "Dec 2025",
+        },
+        {
+          id: 43,
+          title: "/time & /weather Control",
+          desc: "Set time of day and weather. Perpetual daylight, thunderstorms for charged creepers, or freeze time.",
+          code: "/time set noon\n/weather thunder",
+          tags: ["command"],
+          tl: ["COMMAND"],
+          views: "95K",
+          date: "Sep 2025",
+        },
+        {
+          id: 44,
+          title: "/scoreboard - Tracking",
+          desc: "Custom objectives tracking kills, distances, or any metric. Complex detection and leaderboards.",
+          code: "/scoreboard objectives add kills playerKillCount",
+          tags: ["command", "new", "popular"],
+          tl: ["COMMAND", "NEW 2026", "POPULAR"],
+          views: "81K",
+          date: "Jan 2026",
+        },
+        {
+          id: 45,
+          title: "/loot - Custom Drops",
+          desc: "Spawn items from loot tables, replace container contents. Inline loot table syntax is new in 2026.",
+          code: "/loot give @p fish -p mainhand",
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "53K",
+          date: "Jan 2026",
+        },
+        {
+          id: 46,
+          title: "/playsound - Audio",
+          desc: "Play any sound at any location for any player. Custom ambiance, chimes, and alert systems.",
+          code: "/playsound minecraft:block.bell.use master @a ~ ~ ~ 1 1",
+          tags: ["command"],
+          tl: ["COMMAND"],
+          views: "46K",
+          date: "Nov 2025",
+        },
+        {
+          id: 47,
+          title: "/title - Screen Text",
+          desc: "Titles, subtitles, and action bar with JSON formatting. Color, fonts, click events for adventure maps.",
+          code: '/title @a title {"text":"BOSS FIGHT","color":"red","bold":true}',
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "103K",
+          date: "Oct 2025",
+        },
+        {
+          id: 48,
+          title: "/tick - Frame Control",
+          desc: "Freeze, unfreeze, or step game tick by tick. Debug redstone frame by frame or slow for testing.",
+          code: "/tick freeze\n/tick step 10",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "67K",
+          date: "Jan 2026",
+        },
+        {
+          id: 49,
+          title: "/item - Inventory Edit",
+          desc: "Manipulate items directly in inventories. 2026 /item replaces many old inventory workarounds.",
+          code: "/item replace entity @p weapon.mainhand with diamond_sword",
+          tags: ["command", "new", "version"],
+          tl: ["COMMAND", "NEW 2026", "1.21.4"],
+          views: "58K",
+          date: "Jan 2026",
+        },
+        {
+          id: 50,
+          title: "/function - Command Bundles",
+          desc: "Run saved function files with multiple commands. Reusable modules faster than command block chains.",
+          code: "/function mypack:arena_setup",
+          tags: ["command", "popular", "version"],
+          tl: ["COMMAND", "POPULAR", "1.21.4"],
+          views: "76K",
+          date: "Dec 2025",
+        },
+        {
+          id: 51,
+          title: "/spreadplayers - Distribution",
+          desc: "Spread entities randomly with minimum distance. PvP arena starts and minigame setups.",
+          code: "/spreadplayers ~ ~ 0 50 false @a",
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "41K",
+          date: "Nov 2025",
+        },
+        {
+          id: 52,
+          title: "/effect - Status Effects",
+          desc: "Apply any potion effect with custom duration, amplifier, and hidden particles. Buff stations and traps.",
+          code: "/effect give @p minecraft:speed 600 2 true",
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "88K",
+          date: "Oct 2025",
+        },
+        {
+          id: 53,
+          title: "/enchant - Direct Enchant",
+          desc: "Bypass enchanting table. Apply any level, stack incompatible enchants for overpowered gear.",
+          code: "/enchant @p sharpness 5",
+          tags: ["command", "version"],
+          tl: ["COMMAND", "1.21.4"],
+          views: "92K",
+          date: "Sep 2025",
+        },
+        {
+          id: 54,
+          title: "/setblock - Precision Place",
+          desc: "Place blocks at exact coordinates with NBT for chests, signs, spawners, and command blocks.",
+          code: "/setblock ~ ~ ~ chest{Items:[{id:diamond,Count:64}]}",
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "55K",
+          date: "Dec 2025",
+        },
+        {
+          id: 55,
+          title: "/gamemode - Mode Switch",
+          desc: "Switch survival, creative, adventure, spectator. 2026 added per-player default gamemode rules.",
+          code: "/gamemode creative @p",
+          tags: ["command"],
+          tl: ["COMMAND"],
+          views: "71K",
+          date: "Oct 2025",
+        },
+        {
+          id: 56,
+          title: "/gamerule - World Rules",
+          desc: "40+ rules: keepInventory, doDaylightCycle, mobGriefing, and new 2026 simulation distance rules.",
+          code: "/gamerule keepInventory true",
+          tags: ["command", "popular", "new"],
+          tl: ["COMMAND", "POPULAR", "NEW 2026"],
+          views: "115K",
+          date: "Jan 2026",
+        },
+        {
+          id: 57,
+          title: "/clear - Inventory Wipe",
+          desc: "Clear items with type and NBT filtering. Reset gear, remove specific items, or wipe on death.",
+          code: "/clear @p diamond_sword",
+          tags: ["command"],
+          tl: ["COMMAND"],
+          views: "34K",
+          date: "Nov 2025",
+        },
+        {
+          id: 58,
+          title: "/kill - Entity Removal",
+          desc: "Kill by type with selectors. Clear ground items, remove mobs, or wipe all non-player entities.",
+          code: "/kill @e[type=item]",
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "49K",
+          date: "Dec 2025",
+        },
+        {
+          id: 59,
+          title: "/bossbar - Custom HUD",
+          desc: "Custom boss bars for quest progress, health tracking, or resource meters in adventure maps.",
+          code: '/bossbar create mybar "Quest"\n/bossbar set mybar value 50',
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "43K",
+          date: "Jan 2026",
+        },
+        {
+          id: 60,
+          title: "/team - Team System",
+          desc: "Create teams with colors, prefixes, friendly fire settings. Essential for PvP and cooperative maps.",
+          code: '/team add red "Red Team"\n/team modify red color red',
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "37K",
+          date: "Nov 2025",
+        },
+        {
+          id: 61,
+          title: "/replaceitem - Slot Target",
+          desc: "Place items in specific inventory slots by ID. Target armor stands and equipment precisely in 2026.",
+          code: "/item replace entity @a armor.head with diamond_helmet",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "31K",
+          date: "Jan 2026",
+        },
+        {
+          id: 62,
+          title: "/schedule - Timed Events",
+          desc: "Schedule functions or commands after delays. Timed events and sequence-based adventure mechanics.",
+          code: "/schedule function mypack:close_door 5s",
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "38K",
+          date: "Jan 2026",
+        },
+        {
+          id: 63,
+          title: "/tag - Entity Labels",
+          desc: 'Custom tags for targeted execution. Tag mobs as "boss", players as "in_arena", then target precisely.',
+          code: "/tag @p add in_arena\n/execute as @e[tag=boss] run say Rawr",
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "44K",
+          date: "Dec 2025",
+        },
+        {
+          id: 64,
+          title: "/attribute - Stat Edit",
+          desc: "Modify max health, speed, attack damage, knockback resistance, and armor in real time.",
+          code: "/attribute @p generic.movement_speed base set 0.15",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "52K",
+          date: "Jan 2026",
+        },
+        {
+          id: 65,
+          title: "/worldborder - Boundary",
+          desc: "Set, expand, shrink world border with damage and warning zones. Shrinking arenas and restricted areas.",
+          code: "/worldborder set 500 60",
+          tags: ["command", "popular"],
+          tl: ["COMMAND", "POPULAR"],
+          views: "66K",
+          date: "Oct 2025",
+        },
+        {
+          id: 66,
+          title: "/ride - Mount System",
+          desc: "Force entities to ride others. Vehicle systems, mob towers, and custom mount mechanics.",
+          code: "/ride @p mount @e[type=horse,limit=1]",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "36K",
+          date: "Jan 2026",
+        },
+        {
+          id: 67,
+          title: "/place - Feature Placement",
+          desc: "Place configured features and structures at coordinates. Generate villages and trees programmatically.",
+          code: "/place feature minecraft:village_plains ~ ~ ~",
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "29K",
+          date: "Jan 2026",
+        },
+        {
+          id: 68,
+          title: "/damage - Custom Damage",
+          desc: "Precise damage with source types, armor bypass, and knockback control. Custom trap systems.",
+          code: "/damage @p 5 frozen",
+          tags: ["command", "new"],
+          tl: ["COMMAND", "NEW 2026"],
+          views: "33K",
+          date: "Jan 2026",
+        },
+        {
+          id: 69,
+          title: "/chunk - Chunk Control",
+          desc: "Force generate, load, or unload chunks. Pre-generate world areas and manage server memory.",
+          code: "/chunk generate center ~ ~ 3 3",
+          tags: ["command", "new", "technical"],
+          tl: ["COMMAND", "NEW 2026", "TECHNICAL"],
+          views: "27K",
+          date: "Jan 2026",
+        },
+        {
+          id: 70,
+          title: "/debug - Profiler",
+          desc: "Start/stop built-in profiler. 2026 added per-entity and per-chunk profiling for optimization.",
+          code: "/debug start\n/debug stop",
+          tags: ["command", "technical"],
+          tl: ["COMMAND", "TECHNICAL"],
+          views: "48K",
+          date: "Dec 2025",
+        },
+      ];
+
+      // ===== BUILD TIPS (20) =====
+      var buildData = [
+        {
+          id: 71,
+          title: "Depth with Block Variation",
+          desc: "Never use a single block type for a wall. Alternate between stone, stone bricks, cracked variants, and cobblestone. The random variation creates instant visual depth without any complex shapes.",
+          code: "Pattern: Stone | Stone Bricks | Cracked | Cobble | Repeat",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "134K",
+          date: "Jan 2026",
+        },
+        {
+          id: 72,
+          title: "Slab Stacking for Curves",
+          desc: "Use stacked slabs and stairs to create smooth curved walls and towers. Bottom slabs, top slabs, and full blocks at different heights create convincing rounded shapes from square blocks.",
+          code: "Layer: Bottom Slab | Full Block | Top Slab | Repeat",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "98K",
+          date: "Dec 2025",
+        },
+        {
+          id: 73,
+          title: "Invisible Item Frames",
+          desc: "Give item frames an invisibility potion effect to make floating items. Perfect for displaying swords, tools, and blocks as wall decorations without the frame border showing.",
+          code: "/give @p item_frame{EntityTag:{Invisible:1b}}",
+          tags: ["build", "popular", "technical"],
+          tl: ["BUILD", "POPULAR", "TECHNICAL"],
+          views: "87K",
+          date: "Nov 2025",
+        },
+        {
+          id: 74,
+          title: "Roof Angle Mathematics",
+          desc: "For a natural looking roof, use a rise:run ratio of 1:2. Every 2 blocks outward, go 1 block up. This creates a 26.5 degree angle that looks correct at Minecraft scale.",
+          code: "Every 2 blocks out = 1 block up. Use stairs at transitions.",
+          tags: ["build", "beginner"],
+          tl: ["BUILD", "BEGINNER"],
+          views: "62K",
+          date: "Oct 2025",
+        },
+        {
+          id: 75,
+          title: "Waterlogging Secrets",
+          desc: "You can waterlog slabs, stairs, fences, walls, and many other blocks. Place water, then place the block in the same space. This creates hidden water flows and underwater features.",
+          code: "Place water source, then place slab/stair in same block.",
+          tags: ["build", "new", "beginner"],
+          tl: ["BUILD", "NEW 2026", "BEGINNER"],
+          views: "76K",
+          date: "Jan 2026",
+        },
+        {
+          id: 76,
+          title: "Terracotta Color Guide",
+          desc: "Terracotta comes in 16 colors and each has a glazed variant with patterns. White and light gray terracotta are the best neutral building materials that pair with any palette.",
+          code: "Best neutrals: White, Light Gray, Bone Block accents",
+          tags: ["build", "beginner"],
+          tl: ["BUILD", "BEGINNER"],
+          views: "53K",
+          date: "Sep 2025",
+        },
+        {
+          id: 77,
+          title: "Lighting Level Mastery",
+          desc: "Mobs spawn at light level 0. Torches give 14, lanterns give 15. Place torches every 7 blocks on the floor or every 5 blocks on walls for complete spawn-proof coverage.",
+          code: "Floor spacing: every 7 blocks. Wall spacing: every 5 blocks up.",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "119K",
+          date: "Oct 2025",
+        },
+        {
+          id: 78,
+          title: "Leaf Decay Prevention",
+          desc: "Leaves decay when not connected to wood. Place a wood log, attach leaves, then remove the log from a distance. Leaves stay floating. Use shears for permanent placement.",
+          code: "Trick: Place log, add leaves, break log from 5+ blocks away.",
+          tags: ["build", "technical"],
+          tl: ["BUILD", "TECHNICAL"],
+          views: "41K",
+          date: "Nov 2025",
+        },
+        {
+          id: 79,
+          title: "Barrier Block Creative Uses",
+          desc: "Barriers are invisible blocks that only show particle outlines when held. Use them for floating effects, invisible walls at build boundaries, and preventing player access without visible barriers.",
+          code: "/give @p barrier  (Only visible when held in hand)",
+          tags: ["build", "advanced", "technical"],
+          tl: ["BUILD", "ADVANCED", "TECHNICAL"],
+          views: "58K",
+          date: "Dec 2025",
+        },
+        {
+          id: 80,
+          title: "Armor Stand Posing",
+          desc: "Use commands to pose armor stands in any rotation and position. Create sitting figures, lying-down mannequins, and dynamic scenes for decoration without any mods or resource packs.",
+          code: "/summon armor_stand ~ ~ ~ {Pose:{Head:[30f,0f,0f],Body:[0f,0f,-10f]}}",
+          tags: ["build", "advanced", "technical"],
+          tl: ["BUILD", "ADVANCED", "TECHNICAL"],
+          views: "45K",
+          date: "Jan 2026",
+        },
+        {
+          id: 81,
+          title: "Block Palette Organization",
+          desc: "Before building, select exactly 4-6 block types for your main palette, 2-3 for accents, and 1 contrast block. Sticking to a limited palette creates cohesive builds every time.",
+          code: "Rule: 4-6 main blocks + 2-3 accents + 1 contrast maximum.",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "91K",
+          date: "Sep 2025",
+        },
+        {
+          id: 82,
+          title: "Custom Tree Shaping",
+          desc: "Grow trees in confined spaces to force specific shapes. 1x1 chimney forces tall narrow trees. 3x3 room with 1 block opening creates flat-topped mushroom shapes for custom canopies.",
+          code: "1x1 chimney = tall narrow tree. Confined space = custom shape.",
+          tags: ["build", "new", "advanced"],
+          tl: ["BUILD", "NEW 2026", "ADVANCED"],
+          views: "37K",
+          date: "Jan 2026",
+        },
+        {
+          id: 83,
+          title: "Interior Depth Techniques",
+          desc: "Flat walls look dead. Add depth with item frames, flower pots, signs as posters, different floor levels with carpet and slabs, and ceiling beams using logs and slabs.",
+          code: "Add: Item frames, flower pots, floor levels, ceiling beams.",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "83K",
+          date: "Oct 2025",
+        },
+        {
+          id: 84,
+          title: "Scaffolding Speed Build",
+          desc: "Scaffolding extends 6 blocks sideways from its base. Build the base column first, then extend horizontally. Break the base to collapse the entire scaffold instantly from bottom up.",
+          code: "Extend: 6 blocks sideways. Break base to collapse all at once.",
+          tags: ["build", "beginner"],
+          tl: ["BUILD", "BEGINNER"],
+          views: "68K",
+          date: "Nov 2025",
+        },
+        {
+          id: 85,
+          title: "Nether Portal Orientation",
+          desc: "Nether portals always face the same direction as the obsidian frame was built. Use this to control which direction you face when exiting. Horizontal portals are possible with clever placement.",
+          code: "Build frame facing desired exit direction. Orientation carries through.",
+          tags: ["build", "technical"],
+          tl: ["BUILD", "TECHNICAL"],
+          views: "35K",
+          date: "Dec 2025",
+        },
+        {
+          id: 86,
+          title: "Symmetry Build Method",
+          desc: "Build one half of your structure, then use WorldEdit or /clone with mirrored flag to duplicate. Even without tools, counting blocks and mirroring manually creates perfectly symmetrical results.",
+          code: "/clone ~ ~ ~ ~20 ~20 ~20 ~41 ~ ~ mirrored",
+          tags: ["build", "advanced", "popular"],
+          tl: ["BUILD", "ADVANCED", "POPULAR"],
+          views: "72K",
+          date: "Jan 2026",
+        },
+        {
+          id: 87,
+          title: "Photo Mode Setup",
+          desc: "Set time to noon, weather to clear, then use spectator mode or F5 for screenshots. Use /camera command in 2026 for precise cinematic angles with smooth panning.",
+          code: "/time set noon\n/camera @s positioned ~ ~5 ~5 looking_at ~ ~ ~",
+          tags: ["build", "new", "technical"],
+          tl: ["BUILD", "NEW 2026", "TECHNICAL"],
+          views: "44K",
+          date: "Jan 2026",
+        },
+        {
+          id: 88,
+          title: "Material Transition Rules",
+          desc: "Never transition abruptly between materials. Use stairs, slabs, and walls as intermediate blocks. Stone to wood? Add a stone brick stair row, then a stripped log row, then planks.",
+          code: "Transition: Full Block | Stair variant | Slab | New material slab | New block",
+          tags: ["build", "advanced"],
+          tl: ["BUILD", "ADVANCED"],
+          views: "56K",
+          date: "Nov 2025",
+        },
+        {
+          id: 89,
+          title: "Large Scale Grid Planning",
+          desc: "For cities and large builds, plan on graph paper first. Each grid square = 1 block. Mark roads, buildings, and open space. This prevents proportion mistakes that are expensive to fix.",
+          code: "Rule: Plan on paper first. Each square = 1 block. Mark all zones.",
+          tags: ["build", "popular", "beginner"],
+          tl: ["BUILD", "POPULAR", "BEGINNER"],
+          views: "64K",
+          date: "Oct 2025",
+        },
+        {
+          id: 90,
+          title: "Vertical Building Rhythm",
+          desc: "Alternate between forward and upward building every 3-5 blocks. This creates natural visual rhythm instead of monotonous flat walls. Use window rows, balconies, and cornices as rhythm markers.",
+          code: "Pattern: 3 blocks wall | window row | 3 blocks | balcony | repeat.",
+          tags: ["build", "new", "advanced"],
+          tl: ["BUILD", "NEW 2026", "ADVANCED"],
+          views: "39K",
+          date: "Jan 2026",
+        },
+      ];
+
+      // ===== SURVIVAL TIPS (20) =====
+      var survData = [
+        {
+          id: 91,
+          title: "First Night Priority List",
+          desc: "Before sundown on day one: punch 3 logs, craft crafting table and wooden pickaxe, mine 19 stone, craft stone pickaxe sword and furnace, find coal or make charcoal, get 3 wool for a bed.",
+          code: "Priority: Wood > Stone tools > Shelter > Bed > Food",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "201K",
+          date: "Jan 2026",
+        },
+        {
+          id: 92,
+          title: "Branch Mining at Y=-59",
+          desc: "The optimal mining level is Y=-59 in 2026. Dig a central tunnel, then branch every 3 blocks in both directions. Each branch reveals 3 new rows of blocks. Diamond ore generates most at this depth.",
+          code: "Y=-59, branch every 3 blocks, 1x2 tunnels, 2 high.",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "178K",
+          date: "Dec 2025",
+        },
+        {
+          id: 93,
+          title: "Enchanting Table Setup",
+          desc: "Place 15 bookshelves exactly 2 blocks away from the enchanting table in a complete ring. Leave one block gap for entry. This unlocks max level 30 enchants. Always enchant at level 30.",
+          code: "15 bookshelves, 2 blocks away, complete ring, gap for door.",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "143K",
+          date: "Oct 2025",
+        },
+        {
+          id: 94,
+          title: "Iron Farm in 10 Minutes",
+          desc: "Build a basic iron farm: 3x3 platform at village boundary, spawn 10 villagers with beds and workstations below, place a zombie to scare them. Iron golems spawn and fall into lava collection.",
+          code: "Platform 3x3 | 10 villagers below | Zombie to aggro | Lava kill",
+          tags: ["survival", "popular", "technical"],
+          tl: ["SURVIVAL", "POPULAR", "TECHNICAL"],
+          views: "112K",
+          date: "Nov 2025",
+        },
+        {
+          id: 95,
+          title: "Food Efficiency Ranking",
+          desc: "Best foods by saturation: Golden Carrot (14.4), Steak (12.8), Porkchop (12.8), Cooked Salmon (12.0), Bread (6.0). Always prioritize saturation over hunger restoration for longer exploration.",
+          code: "Top 3: Golden Carrot > Steak/Porkchop > Cooked Salmon",
+          tags: ["survival", "beginner"],
+          tl: ["SURVIVAL", "BEGINNER"],
+          views: "96K",
+          date: "Sep 2025",
+        },
+        {
+          id: 96,
+          title: "Shield Timing Mastery",
+          desc: "Raise shield before the attack animation completes, not when you see it coming. Creepers: raise at 2.5 seconds. Skeletons: raise when they draw bow. Skeletons on horseback: strafe and block simultaneously.",
+          code: "Creeper: 2.5s before. Skeleton: when bow drawn. Practice timing.",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "88K",
+          date: "Oct 2025",
+        },
+        {
+          id: 97,
+          title: "Nether Survival Checklist",
+          desc: "Before entering Nether: full iron armor, shield, bow with 64 arrows, 2 stacks food, 10 obsidian + flint & steel, cobblestone for bridging. Build a secure portal room immediately on arrival.",
+          code: "Iron armor + Shield + Bow + 64 arrows + 2 stacks food + Obsidian",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "105K",
+          date: "Nov 2025",
+        },
+        {
+          id: 98,
+          title: "Ender Dragon Fight Prep",
+          desc: "Minimum gear: iron armor, iron sword, bow with Power IV, 3 stacks arrows, 2 slow falling potions, 10 ender pearls, 1 water bucket, bed for bed explosion method (harder in 2026, still works).",
+          code: "Iron armor + Power IV bow + Slow Fall + Ender Pearls + Water",
+          tags: ["survival", "advanced"],
+          tl: ["SURVIVAL", "ADVANCED"],
+          views: "127K",
+          date: "Dec 2025",
+        },
+        {
+          id: 99,
+          title: "Creeper Damage Prevention",
+          desc: "Creeper blast radius is 3 blocks for full damage, up to 7 blocks for partial. Build walls 4 blocks thick for full protection. Always build roofs over entrances. Cat farms repel creepers entirely.",
+          code: "Blast radius: 3 blocks full, 7 partial. Cats repel creepers.",
+          tags: ["survival", "beginner"],
+          tl: ["SURVIVAL", "BEGINNER"],
+          views: "74K",
+          date: "Oct 2025",
+        },
+        {
+          id: 100,
+          title: "Villager Trading Hall",
+          desc: "Build a trading hall: 3x3 cells with bed, workstation, and 2-high air above. Zombie cure trick for cheap trades. Lock trades by trading once then breaking workstation. Librarian for Mending books.",
+          code: "3x3 cell | Bed + Workstation | Cure zombie for discounts",
+          tags: ["survival", "popular", "technical"],
+          tl: ["SURVIVAL", "POPULAR", "TECHNICAL"],
+          views: "131K",
+          date: "Nov 2025",
+        },
+        {
+          id: 101,
+          title: "Wither Fight Strategy",
+          desc: "Spawn wither in bedrock floor at Y=11 in the Nether. immediately run up 5 blocks. The wither cannot reach you through the ceiling. Shoot through a 1-block hole. Use strength potions on bow.",
+          code: "Spawn at Y=11 Nether bedrock | Run up 5 blocks | Shoot through 1-block hole",
+          tags: ["survival", "advanced", "popular"],
+          tl: ["SURVIVAL", "ADVANCED", "POPULAR"],
+          views: "94K",
+          date: "Dec 2025",
+        },
+        {
+          id: 102,
+          title: "Ocean Monument Approach",
+          desc: "Bring: Water Breathing (8 min), Night Vision, Depth Strider III boots, trident or bow, milk for mining fatigue. Dig under the monument from below. Kill guardians from cover, take elder guardian last.",
+          code: "Water Breathing + Night Vision + Depth Strider III + Milk",
+          tags: ["survival", "advanced"],
+          tl: ["SURVIVAL", "ADVANCED"],
+          views: "67K",
+          date: "Oct 2025",
+        },
+        {
+          id: 103,
+          title: "Ancient City Stealth Guide",
+          desc: "Sneak at all times. Place wool under every sculk sensor you see. Wardens track sound, not sight. Never sprint, jump, or break blocks near sculk. Sprint-bridge across open gaps only when warden is far.",
+          code: "ALWAYS SNEAK. Wool under sensors. Warden tracks sound, not sight.",
+          tags: ["survival", "advanced", "new"],
+          tl: ["SURVIVAL", "ADVANCED", "NEW 2026"],
+          views: "89K",
+          date: "Jan 2026",
+        },
+        {
+          id: 104,
+          title: "Raid Farming Strategy",
+          desc: "Trigger a raid by killing a patrol captain near a village with at least one bed and one villager. Build a 1-block tunnel system under the village so raiders path into a kill chamber. Stack raids for drops.",
+          code: "Kill captain near village | Tunnel system below | Kill chamber",
+          tags: ["survival", "technical", "new"],
+          tl: ["SURVIVAL", "TECHNICAL", "NEW 2026"],
+          views: "58K",
+          date: "Jan 2026",
+        },
+        {
+          id: 105,
+          title: "Horse Finding and Taming",
+          desc: "Horses spawn in plains and savannas in herds of 2-6. Best stats: max hearts (30 = 15 hearts), max speed (14.2 blocks/sec), max jump (5.5 blocks). Feed golden apples/carrots to breed for better stats.",
+          code: "Best horse: 30 HP + 14.2 speed + 5.5 jump. Breed with golden carrots.",
+          tags: ["survival", "beginner"],
+          tl: ["SURVIVAL", "BEGINNER"],
+          views: "52K",
+          date: "Sep 2025",
+        },
+        {
+          id: 106,
+          title: "Beacon Pyramid Guide",
+          desc: "Beacon range: level 1 = 20 blocks, level 2 = 30, level 3 = 40, level 4 = 50. Full pyramid needs 164 mineral blocks (1,476 ores). Best primary powers: Haste II, Speed II, Resistance I.",
+          code: "L1: 9 blocks | L2: 34 | L3: 83 | L4: 164 | Range: 20-50",
+          tags: ["survival", "technical"],
+          tl: ["SURVIVAL", "TECHNICAL"],
+          views: "71K",
+          date: "Nov 2025",
+        },
+        {
+          id: 107,
+          title: "Shulker Box Organization",
+          desc: "Color-code shulker boxes by content: white for building blocks, red for redstone, blue for ores, green for food. Label with item frames on top. One shulker box holds 27 stacks = 1,728 items.",
+          code: "Color code by category. Item frame on top as label. 1,728 items each.",
+          tags: ["survival", "popular", "beginner"],
+          tl: ["SURVIVAL", "POPULAR", "BEGINNER"],
+          views: "84K",
+          date: "Oct 2025",
+        },
+        {
+          id: 108,
+          title: "Elytra Rocket Management",
+          desc: "Always carry 2+ stacks of firework rockets. Best rockets for distance: 3 gunpowder + 1 paper (duration 3). Use rockets in bursts, not continuously. Carry slow falling potions as emergency backup.",
+          code: "Best rocket: 3 gunpowder + 1 paper. Carry 2+ stacks always.",
+          tags: ["survival", "advanced", "popular"],
+          tl: ["SURVIVAL", "ADVANCED", "POPULAR"],
+          views: "116K",
+          date: "Dec 2025",
+        },
+        {
+          id: 109,
+          title: "End City Looting Route",
+          desc: "End cities generate on the outer islands. Take the end gateway after dragon fight. Ship has best loot: elytra. City loot: shulker shells, enchanted diamond gear, emeralds. Check every shulker box.",
+          code: "Gateway > Outer island > Find ship first > Elytra > City rooms",
+          tags: ["survival", "advanced"],
+          tl: ["SURVIVAL", "ADVANCED"],
+          views: "79K",
+          date: "Nov 2025",
+        },
+        {
+          id: 110,
+          title: "Mob Farm Height Requirements",
+          desc: "General mob farm: build at Y=200+ above ground, 128+ blocks from any solid block. Spawn platform must be within 128 block sphere of player. Use trapdoors to prevent spider spawning.",
+          code: "Height: Y=200+ | 128 blocks from ground | Trapdoors for spiders",
+          tags: ["survival", "technical", "new"],
+          tl: ["SURVIVAL", "TECHNICAL", "NEW 2026"],
+          views: "103K",
+          date: "Jan 2026",
+        },
+      ];
+
+      // ===== RENDER =====
+      function getType(d) {
+        return d.tags.indexOf("seed") !== -1
+          ? "seed"
+          : d.tags.indexOf("command") !== -1
+            ? "command"
+            : d.tags.indexOf("build") !== -1
+              ? "build"
+              : "survival";
+      }
+      function getCodeClass(t) {
+        return t === "seed"
+          ? "seed-code"
+          : t === "command"
+            ? "cmd-code"
+            : t === "build"
+              ? "tip-code"
+              : "surv-code";
+      }
+
+      function renderCards(data, containerId, count) {
+        var c = document.getElementById(containerId);
+        var slice = data.slice(0, count);
+        var h = "";
+        slice.forEach(function (a) {
+          var t = getType(a);
+          var cls = getCodeClass(t);
+          var tagsH = a.tl
+            .map(function (lb, i) {
+              return (
+                '<span class="card-tag tag-' + a.tags[i] + '">' + lb + "</span>"
+              );
+            })
+            .join("");
+          var safe = a.code
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/"/g, "&quot;");
+          var cv = a.code.replace(/"/g, "&quot;");
+          h +=
+            '<article class="article-card visible" data-type="' +
+            t +
+            '" data-tags="' +
+            a.tags.join(",") +
+            '">' +
+            '<div class="card-banner ' +
+            t +
+            '"></div><div class="card-body">' +
+            '<div class="card-tags">' +
+            tagsH +
+            "</div>" +
+            '<h3 class="card-title">' +
+            a.title +
+            "</h3>" +
+            '<p class="card-desc">' +
+            a.desc +
+            "</p>" +
+            '<div class="card-code ' +
+            cls +
+            '" data-copy="' +
+            cv +
+            '"><span>' +
+            safe +
+            '</span><span class="ch">COPY</span></div>' +
+            '<div class="card-meta"><span><i class="fas fa-eye"></i> ' +
+            a.views +
+            '</span><span><i class="fas fa-calendar"></i> ' +
+            a.date +
+            "</span></div>" +
+            "</div></article>";
+        });
+        c.innerHTML = h;
+      }
+
+      var seedsShown = 15,
+        cmdsShown = 15,
+        PER_PAGE = 10;
+      renderCards(seedsData, "seedsGrid", seedsShown);
+      renderCards(commandsData, "commandsGrid", cmdsShown);
+      renderCards(buildData, "buildGrid", 20);
+      renderCards(survData, "survGrid", 20);
+
+      // ===== LOAD MORE =====
+      document
+        .getElementById("loadMoreSeeds")
+        .addEventListener("click", function () {
+          seedsShown = Math.min(seedsShown + PER_PAGE, seedsData.length);
+          renderCards(seedsData, "seedsGrid", seedsShown);
+          applyFilter(
+            document.querySelector("#seeds .filter-tabs"),
+            "seedsGrid",
+          );
+          if (seedsShown >= seedsData.length) this.disabled = true;
+        });
+      document
+        .getElementById("loadMoreCmds")
+        .addEventListener("click", function () {
+          cmdsShown = Math.min(cmdsShown + PER_PAGE, commandsData.length);
+          renderCards(commandsData, "commandsGrid", cmdsShown);
+          applyFilter(
+            document.querySelector("#commands .filter-tabs"),
+            "commandsGrid",
+          );
+          if (cmdsShown >= commandsData.length) this.disabled = true;
+        });
+
+      // ===== FILTERS =====
+      function applyFilter(tg, gid) {
+        var a = tg.querySelector(".filter-tab.active");
+        if (!a) return;
+        var f = a.getAttribute("data-filter");
+        document
+          .querySelectorAll("#" + gid + " .article-card")
+          .forEach(function (c) {
+            var ty = c.getAttribute("data-type"),
+              tg2 = c.getAttribute("data-tags");
+            c.classList.toggle(
+              "hidden",
+              !(f === "all" || ty === f || tg2.indexOf(f) !== -1),
+            );
+          });
+      }
+      document.querySelectorAll(".filter-tabs").forEach(function (tg) {
+        var g = tg.nextElementSibling;
+        var tabs = tg.querySelectorAll(".filter-tab");
+        tabs.forEach(function (tab) {
+          tab.addEventListener("click", function () {
+            tabs.forEach(function (t) {
+              t.classList.remove("active");
+            });
+            tab.classList.add("active");
+            applyFilter(tg, g.id);
+          });
+        });
+      });
+
+      // ===== COPY =====
+      document.addEventListener("click", function (e) {
+        var el = e.target.closest(".card-code");
+        if (!el) return;
+        navigator.clipboard
+          .writeText(el.getAttribute("data-copy"))
+          .then(function () {
+            var h = el.querySelector(".ch");
+            h.textContent = "COPIED!";
+            h.style.color = "var(--accent)";
+            setTimeout(function () {
+              h.textContent = "COPY";
+              h.style.color = "";
+            }, 1500);
+            showToastMsg("Copied to clipboard!");
+          });
+      });
+
+      // ===== TOAST =====
+      function showToastMsg(m) {
+        var t = document.getElementById("toast");
+        t.querySelector(".toast-text").innerHTML = m;
+        t.classList.add("show");
+        clearTimeout(t._t);
+        t._t = setTimeout(function () {
+          t.classList.remove("show");
+          setTimeout(function () {
+            t.querySelector(".toast-text").innerHTML =
+              "Achievement Unlocked:<br>First Steps";
+          }, 400);
+        }, 2000);
+      }
+      setTimeout(function () {
+        showToastMsg("Achievement Unlocked:<br>First Steps");
+      }, 2500);
+
+      // ===== STARS =====
+      (function () {
+        var c = document.getElementById("stars");
+        for (var i = 0; i < 50; i++) {
+          var s = document.createElement("div");
+          s.className = "star";
+          s.style.left = Math.random() * 100 + "%";
+          s.style.top = Math.random() * 40 + "%";
+          var z = Math.random() * 3 + 1 + "px";
+          s.style.width = z;
+          s.style.height = z;
+          s.style.animationDelay = Math.random() * 5 + "s";
+          s.style.animationDuration = Math.random() * 3 + 2 + "s";
+          c.appendChild(s);
+        }
+      })();
+
+      // ===== PARTICLES =====
+      (function () {
+        var c = document.getElementById("particles");
+        var t = [
+          "linear-gradient(180deg,#5D8C3E 30%,#8B6914 30%)",
+          "linear-gradient(135deg,#7F7F7F,#5A5A5A)",
+          "linear-gradient(135deg,#8B6914,#7A5C12)",
+          "linear-gradient(135deg,#FFD700,#DAA520)",
+          "linear-gradient(135deg,#FF4444,#CC0000)",
+          "linear-gradient(180deg,#5D4037,#3E2723)",
+          "linear-gradient(135deg,#4FC3F7,#0288D1)",
+          "linear-gradient(135deg,#FFB74D,#E65100)",
+        ];
+        for (var i = 0; i < 18; i++) {
+          var p = document.createElement("div");
+          p.className = "particle-block";
+          var sz = Math.random() * 12 + 8;
+          p.style.width = sz + "px";
+          p.style.height = sz + "px";
+          p.style.left = Math.random() * 100 + "%";
+          p.style.background = t[Math.floor(Math.random() * t.length)];
+          p.style.animationDuration = Math.random() * 15 + 10 + "s";
+          p.style.animationDelay = Math.random() * 15 + "s";
+          c.appendChild(p);
+        }
+      })();
+
+      // ===== REVEAL =====
+      var rO = new IntersectionObserver(
+        function (e) {
+          e.forEach(function (en) {
+            if (en.isIntersecting) en.target.classList.add("visible");
+          });
+        },
+        { threshold: 0.06 },
+      );
+      document.querySelectorAll(".reveal").forEach(function (el) {
+        rO.observe(el);
+      });
+
+      // ===== NAVBAR =====
+      var nb = document.querySelector(".navbar"),
+        sb = document.getElementById("scrollTop");
+      window.addEventListener("scroll", function () {
+        nb.classList.toggle("scrolled", window.scrollY > 60);
+        sb.classList.toggle("show", window.scrollY > 600);
+      });
+
+      // ===== MOBILE =====
+      var mb = document.getElementById("mobileMenuBtn"),
+        nl = document.getElementById("navLinks");
+      mb.addEventListener("click", function () {
+        nl.classList.toggle("open");
+        mb.querySelector("i").className = nl.classList.contains("open")
+          ? "fas fa-times"
+          : "fas fa-bars";
+      });
+      nl.querySelectorAll("a").forEach(function (a) {
+        a.addEventListener("click", function () {
+          nl.classList.remove("open");
+          mb.querySelector("i").className = "fas fa-bars";
+        });
+      });
+
+      // ===== SCROLL TOP =====
+      sb.addEventListener("click", function () {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
+
+      // ===== PARALLAX =====
+      var te = document.querySelector(".terrain"),
+        su = document.querySelector(".sun"),
+        cl = document.querySelector(".clouds-c");
+      window.addEventListener("scroll", function () {
+        var y = window.scrollY;
+        if (te) te.style.transform = "translateY(" + y * 0.15 + "px";
+        if (su) su.style.transform = "translateY(" + y * 0.08 + "px";
+        if (cl) cl.style.transform = "translateY(" + y * 0.05 + "px";
+      });
+
+      // ===== ANCHORS =====
+      document.querySelectorAll('a[href^="#"]').forEach(function (a) {
+        a.addEventListener("click", function (e) {
+          var h = this.getAttribute("href");
+          if (h === "#") return;
+          e.preventDefault();
+          var t = document.querySelector(h);
+          if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+        });
+      });
+
+      // ===== CURSOR TRAIL =====
+      if (window.matchMedia("(pointer:fine)").matches) {
+        var tb = [];
+        var tc = [
+          "linear-gradient(180deg,#5D8C3E 30%,#8B6914 30%)",
+          "linear-gradient(135deg,#7F7F7F,#5A5A5A)",
+          "linear-gradient(135deg,#FFD700,#DAA520)",
+          "linear-gradient(135deg,#4FC3F7,#0288D1)",
+        ];
+        for (var i = 0; i < 5; i++) {
+          var b = document.createElement("div");
+          b.className = "cursor-block";
+          b.style.background = tc[i % tc.length];
+          var sz = Math.max(4, 12 - i * 2);
+          b.style.width = sz + "px";
+          b.style.height = sz + "px";
+          document.body.appendChild(b);
+          tb.push({ el: b, x: 0, y: 0 });
+        }
+        var mx = 0,
+          my = 0;
+        document.addEventListener("mousemove", function (e) {
+          mx = e.clientX;
+          my = e.clientY;
+          tb.forEach(function (bl) {
+            bl.el.style.opacity = ".6";
+          });
+        });
+        document.addEventListener("mouseleave", function () {
+          tb.forEach(function (bl) {
+            bl.el.style.opacity = "0";
+          });
+        });
+        (function at() {
+          var px = mx,
+            py = my;
+          tb.forEach(function (bl, idx) {
+            var sp = 0.3 - idx * 0.04;
+            bl.x += (px - bl.x) * Math.max(0.05, sp);
+            bl.y += (py - bl.y) * Math.max(0.05, sp);
+            bl.el.style.left = bl.x - parseInt(bl.el.style.width) / 2 + "px";
+            bl.el.style.top = bl.y - parseInt(bl.el.style.height) / 2 + "px";
+            px = bl.x;
+            py = bl.y;
+          });
+          requestAnimationFrame(at);
+        })();
+      }
+    </script>
+  </body>
+</html>
